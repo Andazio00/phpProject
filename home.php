@@ -50,10 +50,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 20px;
+        margin: 1rem;
         box-shadow: 4px 4px 4px 4px #eee;
         border-radius: 4px;
-        padding: 10px;
+        padding: 1rem;
     }
 
     .loginUser_info > .username{
@@ -63,6 +63,28 @@
     }
 
 
+    @media(max-width:452px){
+        .homepage_header{
+            flex-direction: column;
+        }
+
+        .loginUser_info{
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+
+     .post_list_link{
+        color: black;
+        text-decoration: none;
+
+     }
+
+     .post_list_link:hover{
+
+        font-weight: 600;
+     }
 
 </style>
 
@@ -80,11 +102,16 @@
 
     if(isset($_SESSION['user'])){
       $username = $_SESSION['user'];
-      echo "<div class='loginUser_info'><b class='username'>{$username}님</b>
+      
+      echo "
+
+     
+      <div class='loginUser_info'><b class='username'>{$username}님</b>
         <div>
             <button type='button' class='btn btn-primary btn-sm' >
-           <a href='/blog/logout.php'>            로그아웃</a></button>
+           <a class='homepage_option_list_link' href='/blog/logout.php'>            로그아웃</a></button>
             <button type='button' class='btn btn-primary btn-sm'>내정보</button>
+               <button type='button' class='btn btn-primary btn-sm'><a class='homepage_option_list_link'  href='/blog/writePost.html'>글쓰기</a></button>
         </div>
          
       </div>";
@@ -109,36 +136,56 @@
   
 
     <table class="table">
+
+    <div class="">
+      
+    </div>
+
       <thead>
         <tr>
             <th>제목</th>
             <td>작성자</td>
-            <td>옵션</td>
+            
         </tr>
      </thead>
      <tbody>
         <!-- 사용자가 로그인 하면 테이블 전체가 보임 -->
         <?php
-        $tblQuery = "SELECT * FROM posts";
+        
+        // db 조인을 통해서  포스트 테이블과 링크된 users 테이블 전체 데이터 끌고오기
+        $tblStmt = $conn -> prepare("SELECT * FROM posts 
+                           LEFT JOIN users ON posts.write_id = users.id");
 
-        $result = mysqli_query($conn,$tblQuery);
+         // 어떠한 요인에 의해 쿼리를 가져오기 실패하면 에러 보내기
+         if(!$tblStmt) die("쿼리 준비 실패:".$conn ->error); 
+        
+        
+         // 145번째 쿼리 실행
+        $tblStmt -> execute();
 
+       // 153번째 쿼리 실행해서 결과 가져오기
+        $resultTbl = $tblStmt -> get_result();
+       
+         
+         // 가져온 테이블 결과의 행 수가 여러개면
+        if($resultTbl -> num_rows > 0){
 
-        // 만약 게시글이 하나라도 있다면
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){
+          
+     
+            // while 이하 동작들을 실행
+            while( $row = $resultTbl -> fetch_assoc()){
                 echo "<tr>
-                       <td>{$row['post_title']}</td>
-                       <td>홍길동</td>
-                       <td>
-                          <a class='homepage_option_list_link'  href='#'>수정</a>
-                            <a class='homepage_option_list_link'  href='#'>삭제</a>
-
-                       </td>
-
-                       ";
+                        <td><a class='post_list_link'  href='/blog/postView.php?post_id={$row['post_id']}'>{$row['post_title']}</a></td>
+                        <td>{$row['username']}</td>
+                </tr>
+                ";
             }
-        }else{
+
+          
+
+
+
+        }else{  // 비 로그인 사용자에게 보여지는 글
             echo "<tr>
             <td colspan='3' >글이 없습니다.</td>
           </tr>";
