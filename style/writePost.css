@@ -1,0 +1,11 @@
+.form-option-bar {
+    		display: flex;
+    		
+    		margin-left: 40rem;
+    	}
+
+.form-option-bar > .bar-icon {
+	 margin: 1em;
+}
+
+

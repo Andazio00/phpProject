@@ -103,7 +103,8 @@ $conn->close();
 
       if($post) 
          {
-            echo "<button><a href='./deletePost.php?post_id=$post_id'>클릭</a></button>";
+            echo "<button><a href='./deletePost.php?post_id=$post_id'>삭제</a></button>";
+            echo "<button><a href='./updatePost.php?post_id=$post_id'>수정</a></button>";         
          }
     
 

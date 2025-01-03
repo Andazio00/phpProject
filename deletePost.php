@@ -29,10 +29,6 @@
     } else {
         echo "게시글 삭제에 실패했습니다.";
     }
-     
-   
-     
-    
     $postStmt->close();
     $conn->close(); 
  }else{

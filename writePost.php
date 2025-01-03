@@ -12,10 +12,10 @@
      $username = $_SESSION['user'];
     $post_title = $_POST['post_title'];
     $post_content = $_POST['post_content'];
-    $post_pw = $_POST['post_pw'];
+   
     
 
-    if(empty($post_title) || empty($post_content) || empty($post_pw)){
+    if(empty($post_title) || empty($post_content) ){
     	die("All fields are required");
 
         }
@@ -38,14 +38,14 @@
 
 
     
-    $stmt = $conn->prepare("INSERT INTO posts ( post_title, post_content,post_pw,write_id) VALUES (?, ?, ?,?)");
+    $stmt = $conn->prepare("INSERT INTO posts ( post_title, post_content,write_id) VALUES (?, ?, ?)");
     
     if (!$stmt) {
         die("Query preparation failed: " . $conn->error);
     }
     
 
-    $stmt->bind_param("ssss",  $post_title, $post_content,$post_pw , $row['id']);
+    $stmt->bind_param("sss",  $post_title, $post_content , $row['id']);
     
     if ($stmt->execute()) {
         echo "Post submitted successfully!";
