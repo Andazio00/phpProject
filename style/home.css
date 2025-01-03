@@ -63,3 +63,32 @@
 
         font-weight: 600;
      }
+
+
+    
+    @media(max-width:320px){
+        .homepage_header{
+            display: flex;
+            flex-direction: column;
+            
+        } 
+
+        .homepage_header > .homepage_title{
+            font-size: 1em;
+        }
+
+
+       .homepage_header > .homepage_option{
+           display: flex;
+
+       }
+
+        .homepage_header > .homepage_option > .homepage_option_list {
+             font-size: 1px;
+             margin-left: 2px;
+        } 
+ 
+
+
+
+    }

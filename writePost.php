@@ -49,6 +49,7 @@
     
     if ($stmt->execute()) {
         echo "Post submitted successfully!";
+        echo "<script>document.write(location.href='home.php' )</script>";
     } else {
     	   echo "Failed to submit the post: " . $stmt->error;
     }
