@@ -10,94 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<style>
-    .homepage_header{
-       display:flex;
-       justify-content:space-between;
-       align-items:center;
-       margin:1em;
-    }
-
-    .homepage_title{
-        padding:1em;
-        font-size: 2em;
-    }
-
-    .homepage_option{
-        display:flex;
-        list-style-type:none;
-        margin:1em;
-
-    }
-
-    .homepage_option_list{
-        margin:1em;
-    }
-
-
-    .homepage_option_list_link{
-       text-decoration: none;
-       color:white;
-    }
-
-    .homepage_option_list_link:hover{
-        cursor:pointer;
-        font-weight: 600;
-    }
-
-
-    .loginUser_info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 1rem;
-        box-shadow: 4px 4px 4px 4px #eee;
-        border-radius: 4px;
-        padding: 1rem;
-    }
-
-    .loginUser_info > .username{
-        padding-right: 6em;
-        font-size: 1em;
-        padding-bottom: 0.5em;
-    }
-
-
-    @media(max-width:452px){
-        .homepage_header{
-            flex-direction: column;
-        }
-
-        .loginUser_info{
-            display: flex;
-            flex-direction: row;
-        }
-    }
-
-
-     .post_list_link{
-        color: black;
-        text-decoration: none;
-
-     }
-
-     .post_list_link:hover{
-
-        font-weight: 600;
-     }
-
-</style>
-
+    <link rel="stylesheet" type="text/css" href="./home.css">
 </head>
 <body> 
     <header class="homepage_header">
-
     <h1 class="homepage_title">우하하 커뮤니티</h1>
 
-
    <?php
-     
-   
+       
     session_start(); // 로그인 유지
 
     if(isset($_SESSION['user'])){
@@ -123,7 +43,7 @@
 
        <ul class='homepage_option'>
         <li class='homepage_option_list'><button type='button' class='btn btn-primary'><a class='homepage_option_list_link'  href='/blog/login.html'>로그인</a></button></li>
-        <li class='homepage_option_list'><button type='button' class='btn btn-primary'><a class='homepage_option_list_link' href='/home/join.html'>회원가입</a></button></li>
+        <li class='homepage_option_list'><button type='button' class='btn btn-primary'><a class='homepage_option_list_link' href='/blog/join.html'>회원가입</a></button></li>
     </ul>
         ";
      

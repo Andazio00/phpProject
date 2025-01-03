@@ -1,0 +1,65 @@
+
+    .homepage_header{
+       display:flex;
+       justify-content:space-between;
+       align-items:center;
+       margin:1em;
+    }
+
+    .homepage_title{
+        padding:1em;
+        font-size: 2em;
+    }
+
+    .homepage_option{
+        display:flex;
+        list-style-type:none;
+        margin:1em;
+
+    }
+
+    .homepage_option_list{
+        margin:1em;
+    }
+
+
+    .homepage_option_list_link{
+       text-decoration: none;
+       color:white;
+    }
+
+    .homepage_option_list_link:hover{
+        cursor:pointer;
+        font-weight: 600;
+    }
+
+
+    .loginUser_info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem;
+        box-shadow: 4px 4px 4px 4px #eee;
+        border-radius: 4px;
+        padding: 1rem;
+    }
+
+    .loginUser_info > .username{
+        padding-right: 6em;
+        font-size: 1em;
+        padding-bottom: 0.5em;
+    }
+
+
+    
+
+     .post_list_link{
+        color: black;
+        text-decoration: none;
+
+     }
+
+     .post_list_link:hover{
+
+        font-weight: 600;
+     }
