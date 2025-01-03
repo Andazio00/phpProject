@@ -1,8 +1,14 @@
+<?php
+ session_start();
+  include "./dbconn.php"; 
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글쓰기</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -42,8 +48,8 @@
 <div class="post_view">
 <?php
 
-   include "dbConn.php";
-
+  
+  include "./dbconn.php"; 
 
    //게시글 제목 가져오기
    $post_id = $_GET['post_id'] ;
@@ -83,10 +89,9 @@ $conn->close();
   <div>
   <?php
 
-      include "dbConn.php";
-      session_start();
+       include "./dbconn.php"; 
       $post_id = $_GET['post_id'];
-      $username = $_SESSION['user'];
+     
    
 
         
@@ -103,8 +108,10 @@ $conn->close();
 
       if($post) 
          {
-            echo "<button><a href='./deletePost.php?post_id=$post_id'>삭제</a></button>";
-            echo "<button><a href='./updatePost.php?post_id=$post_id'>수정</a></button>";         
+            echo "<div> 
+            <button><a href='./deletePost.php?post_id={$post_id}'>삭제</a></button>
+            <button><a href='./updatePost.php?post_id={$post_id}'>수정</a></button>
+            ";
          }
     
 

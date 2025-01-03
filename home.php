@@ -6,13 +6,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style/home.css">
 </head>
 <body> 
+
+ 
     <header class="homepage_header ">
     <h1 class="homepage_title">우하하 커뮤니티</h1>
 
@@ -26,12 +28,14 @@
       echo "
 
      
-      <div class='loginUser_info'><b class='username'>{$username}님</b>
-        <div>
+      <div class='loginUser_info'>
+
+        <b class='username'>{$username}님</b>
+        <div class='loginUser_option'>
             <button type='button' class='btn btn-primary btn-sm' >
-           <a class='homepage_option_list_link' href='/blog/logout.php'>            로그아웃</a></button>
+           <a class='homepage_option_list_link' href='/logout.php'>            로그아웃</a></button>
             <button type='button' class='btn btn-primary btn-sm'>내정보</button>
-               <button type='button' class='btn btn-primary btn-sm'><a class='homepage_option_list_link'  href='/blog/writePost.html'>글쓰기</a></button>
+               <button type='button' class='btn btn-primary btn-sm'><a class='homepage_option_list_link'  href='/writePost.html'>글쓰기</a></button>
         </div>
          
       </div>";
@@ -55,12 +59,8 @@
     </header>
   
 
-    <table class="table">
-
-    <div class="">
-      
-    </div>
-
+  <div class="table-responsive">
+    <table class="table  ">
       <thead>
         <tr>
             <th>제목</th>
@@ -93,18 +93,16 @@
           
      
             // while 이하 동작들을 실행
-            while( $row = $resultTbl -> fetch_assoc()){
-                echo "<tr>
-                        <td><a class='post_list_link'  href='/blog/postView.php?post_id={$row['post_id']}'>{$row['post_title']}</a></td>
-                        <td>{$row['username']}</td>
-                </tr>
-                ";
-            }
-
-          
-
-
-
+  while ($row = $resultTbl->fetch_assoc()) {
+      $post_id = $row['post_id'];
+      $postTitle = htmlspecialchars($row['post_title']);
+      $username = htmlspecialchars($row['username']);
+    echo "<tr>
+        <td><a class='post_list_link' href='/postView.php?post_id={$post_id}'>{$postTitle}</a></td>
+        <td>{$username}</td>
+    </tr>"; 
+}
+   
         }else{  // 비 로그인 사용자에게 보여지는 글
             echo "<tr>
             <td colspan='3' >글이 없습니다.</td>
@@ -121,6 +119,7 @@
      
 
     </table>
+</div>
 
 
 
